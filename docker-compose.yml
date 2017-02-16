@@ -1,0 +1,18 @@
+# *** webserver ***
+http:
+  build: ./http/apache-php7/
+  links:
+    - db:mysql
+  ports:
+    - "80:80"
+  environment:
+    JOOMLA_DB_NAME: production
+
+# *** mysql ***
+db:
+  build: ./db/5.6/
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+  # just needed during development
+  ports:
+    - "3306:3306"
